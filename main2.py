@@ -1,17 +1,17 @@
 import streamlit as st
-from dotenv import load_dotenv
-from PyPDF2 import PdfReader
+from dotenv import load_dotenv# Load Environment Variable
+from PyPDF2 import PdfReader#Extract raw text from PDF Files
 from langchain_text_splitters import CharacterTextSplitter
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_community.vectorstores import FAISS
 from langchain_groq import ChatGroq
-from langchain_classic.memory import ConversationBufferMemory
+from langchain_classic.memory import ConversationBufferMemory# Maintains Chat History so  the bot understands contextual follow up questions.
 from langchain_classic.chains import ConversationalRetrievalChain
-from html_template import css, bot_template, user_template
+from html_template import css, bot_template, user_template# Supplies custom CSS and HTML template (chat bubbles)
 
 
 def get_pdf_text(pdf_docs):
-    text = ""
+    text = "" 
     for pdf in pdf_docs:
         pdf_reader = PdfReader(pdf)
         for page in pdf_reader.pages:
